@@ -10,7 +10,7 @@ from telegram.ext import (
     Application, CommandHandler, MessageHandler, filters, ContextTypes
 )
 
-TOKEN = '7834120140:AAHL1Tn-FSgYnyuYeP3jQ-LhfRqMMDHNr9w'
+TOKEN = '8031233073:AAGgdXbO9TCxPYdPiedLlT9zGVxIMQFiML4'
 
 # ------------------- System Configurations -------------------
 
@@ -137,7 +137,12 @@ async def format_response(card_full, status, response, taken, gateway_url, user_
     else:
         status_text = "𝐃𝐞𝐜𝐥𝐢𝐧𝐞𝐝 / 𝐄𝐫𝐫𝐨𝐫 ❌"
         
-    user_status = "𝐀𝐝𝐦𝐢𝐧 👑" if user_id in ADMINS else "𝐏𝐫𝐞𝐦𝐢𝐮𝐦 💎"
+    if user_id in ADMINS:
+        user_status = "𝐀𝐝𝐦𝐢𝐧 👑"
+    elif user_id in VIP_USERS and VIP_USERS[user_id] > time.time():
+        user_status = "𝐏𝐫𝐞𝐦𝐢𝐮𝐦 💎"
+    else:
+        user_status = "𝐅𝐫𝐞𝐞 𝐔𝐬𝐞𝐫 🤖"
 
     text = f"""#𝐏𝐚𝐲𝐏𝐚𝐥 𝐂𝐮𝐬𝐭𝐨𝐦 [{mode}] 🌟
 - - - - - - - - - - - - - - - - - - - - - -
